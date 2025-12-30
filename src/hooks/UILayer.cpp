@@ -107,6 +107,7 @@ void HookUILayer::updateUI() {
 
 }
 
+#ifndef GEODE_IS_IOS
 #include <geode.custom-keybinds/include/Keybinds.hpp>
 using namespace keybinds;
 
@@ -115,3 +116,7 @@ void HookUILayer::defineKeybind(const char* id, std::function<ListenerResult(boo
 		return callback(event->isDown());
 	}, id);
 }
+#else
+void HookUILayer::defineKeybind(const char* id, std::function<ListenerResult(bool)> callback) {
+}
+#endif

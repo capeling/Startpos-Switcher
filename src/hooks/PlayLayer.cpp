@@ -7,7 +7,7 @@ using namespace geode::prelude;
 
 void HookPlayLayer::addObject(GameObject* obj) {
     if (obj->m_objectID == 31) {
-        if(!static_cast<StartPosObject*>(obj)->m_startSettings->m_disableStartPos && ModManager::sharedState()->m_ignoreDisabled)
+        if(!static_cast<StartPosObject*>(obj)->m_startSettings->m_disableStartPos || !ModManager::sharedState()->m_ignoreDisabled)
             m_fields->m_startPosObjects.push_back(obj);
     }
     PlayLayer::addObject(obj);

@@ -95,13 +95,13 @@ void HookUILayer::updateUI() {
     fields->m_switcherLabel->setString(fmt::format("{}/{}", playLayer->m_fields->m_startPosIdx, playLayer->m_fields->m_startPosObjects.size()).c_str());
     fields->m_switcherLabel->limitLabelWidth(40, 0.6f, 0);
 
-    fields->m_switcherMenu->stopActionByTag(69);
+    fields->m_switcherMenu->stopActionByTag(676767677);
     if(fields->m_firstUpdate && mm->m_dontFadeOnStart) {
         fields->m_switcherMenu->setOpacity(mm->m_opacity);
         fields->m_firstUpdate = false;
     } else {
         auto action = CCSequence::create(CCEaseInOut::create(CCFadeTo::create(0.3f, 255), 2), CCDelayTime::create(0.5), CCEaseInOut::create(CCFadeTo::create(0.5f, mm->m_opacity), 2), nullptr);
-        action->setTag(69);
+        action->setTag(676767677);
         fields->m_switcherMenu->runAction(action);
     }
 

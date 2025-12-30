@@ -1,5 +1,4 @@
-#ifndef MODMANAGER_HPP
-#define MODMANAGER_HPP
+#pragma once
 
 class ModManager {
 public:
@@ -12,4 +11,3 @@ public:
     bool m_ignoreDisabled = false;
     double m_opacity = 0;
 };
-#endif

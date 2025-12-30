@@ -7,11 +7,8 @@ using namespace geode::prelude;
 
 void HookPlayLayer::addObject(GameObject* obj) {
     if (obj->m_objectID == 31) {
-            if(static_cast<StartPosObject*>(obj)->m_startSettings->m_disableStartPos && ModManager::sharedState()->m_ignoreDisabled) {
-                PlayLayer::addObject(obj);
-                return;
-            }
-        m_fields->m_startPosObjects.push_back(obj);
+        if(!static_cast<StartPosObject*>(obj)->m_startSettings->m_disableStartPos && ModManager::sharedState()->m_ignoreDisabled)
+            m_fields->m_startPosObjects.push_back(obj);
     }
     PlayLayer::addObject(obj);
 }
@@ -57,7 +54,7 @@ void HookPlayLayer::createObjectsFromSetupFinished() {
     PlayLayer::createObjectsFromSetupFinished();
     auto fields = m_fields.self();
 
-    std::sort(fields->m_startPosObjects.begin(), fields->m_startPosObjects.end(), [](auto* a, auto* b) { return a->getPositionX() < b->getPositionX(); });
+    std::sort(fields->m_startPosObjects.begin(), fields->m_startPosObjects.end(), [](auto a, auto b) { return a->getPositionX() < b->getPositionX(); });
 
     if(this->m_startPosObject) {
         auto currentIdx = find(fields->m_startPosObjects.begin(), fields->m_startPosObjects.end(), this->m_startPosObject) - fields->m_startPosObjects.begin();

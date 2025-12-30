@@ -1,4 +1,7 @@
 # Startpos Switcher Changelog
+## v1.0.8
+- Internal changes in preparation for 2.208
+- iOS support
 ## v1.0.7
 - Improved performance (hopefully)
 - Added custom keybinds support for MacOS and Android

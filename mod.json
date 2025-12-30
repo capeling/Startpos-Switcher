@@ -1,5 +1,5 @@
 {
-	"geode": "4.2.0",
+	"geode": "4.10.0",
 	"gd": {
 		"win": "2.2074",
 		"mac": "2.2074",
@@ -8,7 +8,7 @@
 	},
 	"id": "capeling.startpos_switcher",
 	"name": "Startpos Switcher",
-	"version": "v1.0.7",
+	"version": "v1.0.8",
 	"developer": "Capeling",
 	"description": "Just a startpos switcher",
 	"settings": {
@@ -43,12 +43,12 @@
 		}
 	},
 	"links": {
-		"homepage": "https://x.com/capeling_",
-		"source": "https://github.com/Capeling/Startpos-Switcher"
+		"homepage": "https://x.com/capelingg",
+		"source": "https://github.com/capeling/Startpos-Switcher"
 	},
 	"issues": {
 		"info": "If you have an issue with the mod please report it here!",
-		"url": "https://github.com/Capeling/Startpos-Switcher/issues"
+		"url": "https://github.com/capeling/Startpos-Switcher/issues"
 	},
 	"tags": [
 		"enhancement",

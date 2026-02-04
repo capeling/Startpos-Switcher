@@ -1,4 +1,7 @@
 # Startpos Switcher Changelog
+## v1.0.9
+- Support for 2.2081
+- No longer depends on custom keybinds, go into the mod settings to change keybind now.
 ## v1.0.8
 - Internal changes in preparation for 2.208
 - iOS support

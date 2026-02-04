@@ -1,5 +1,7 @@
 #pragma once
 
+#include "keybind/Keybind.hpp"
+
 class ModManager {
 public:
     static ModManager* sharedState();
@@ -10,4 +12,7 @@ public:
     bool m_hideBtns = false;
     bool m_ignoreDisabled = false;
     double m_opacity = 0;
+
+    Keybind m_prevKey;
+    Keybind m_nextKey;
 };

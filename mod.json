@@ -1,17 +1,29 @@
 {
-	"geode": "4.10.0",
+	"geode": "5.0.0-alpha.1",
 	"gd": {
-		"win": "2.2074",
-		"mac": "2.2074",
-		"android": "2.2074",
-		"ios": "2.2074"
+		"win": "2.2081",
+		"mac": "2.2081",
+		"android": "2.2081",
+		"ios": "2.2081"
 	},
 	"id": "capeling.startpos_switcher",
 	"name": "Startpos Switcher",
-	"version": "v1.0.8",
-	"developer": "Capeling",
+	"version": "v1.0.9",
+	"developer": "capeling",
 	"description": "Just a startpos switcher",
 	"settings": {
+        "leftSwitch": {
+            "type": "custom:keybind",
+            "name": "Previous Startpos",
+            "description": "Switches to the previous startpos, wraps around",
+            "default": 81
+        },
+        "rightSwitch": {
+            "type": "custom:keybind",
+            "name": "Next Startpos",
+            "description": "Switches to the next startpos, wraps around",
+            "default": 69
+        },
 		"opacity":{
 			"name": "Opacity",
 			"default": 50,
@@ -55,12 +67,5 @@
 		"gameplay",
 		"interface",
 		"utility"
-	],
-	"dependencies": {
-		"geode.custom-keybinds": {
-			"version": "v1.7.1",
-			"importance": "required",
-			"platforms": ["win","mac","android"]
-		}
-	}
+	]
 }

@@ -55,29 +55,26 @@ bool HookUILayer::init(GJBaseGameLayer* baseGame) {
         this->addChild(fields->m_switcherMenu);
     }
 
-    Loader::get()->queueInMainThread([this] {
-        if(!PlayLayer::get()) return;
-
-        this->defineKeybind("switch-next"_spr, [this](bool down) {
-            auto playLayer = static_cast<HookPlayLayer*>(PlayLayer::get());
-            if(down && !playLayer->m_fields->m_startPosObjects.empty() && playLayer->canPauseGame())
-                playLayer->updateStartPos(playLayer->m_fields->m_startPosIdx + 1);
-
-            return ListenerResult::Stop;
-        });
-
-        this->defineKeybind("switch-previous"_spr, [this](bool down) {
-            auto playLayer = static_cast<HookPlayLayer*>(PlayLayer::get());
-
-            if(down && !playLayer->m_fields->m_startPosObjects.empty() && playLayer->canPauseGame())
-                playLayer->updateStartPos(playLayer->m_fields->m_startPosIdx - 1);
-
-            return ListenerResult::Stop;
-        });
-
-    });
-
     return true;
+}
+
+void HookUILayer::handleKeypress(cocos2d::enumKeyCodes key, bool down, double timestamp) {
+    if (!down)
+        return UILayer::handleKeypress(key, down, timestamp);
+    
+    if (m_editorMode)
+        return UILayer::handleKeypress(key, down, timestamp);
+
+    auto mm = ModManager::sharedState();
+    auto playLayer = static_cast<HookPlayLayer*>(PlayLayer::get());
+
+    if (key == mm->m_nextKey.v && !playLayer->m_fields->m_startPosObjects.empty() && playLayer->canPauseGame()) 
+        playLayer->updateStartPos(playLayer->m_fields->m_startPosIdx + 1);
+    
+    if (key == mm->m_prevKey.v && !playLayer->m_fields->m_startPosObjects.empty() && playLayer->canPauseGame()) 
+        playLayer->updateStartPos(playLayer->m_fields->m_startPosIdx - 1);
+
+    UILayer::handleKeypress(key, down, timestamp);
 }
 
 void HookUILayer::updateUI() {
@@ -106,17 +103,3 @@ void HookUILayer::updateUI() {
     }
 
 }
-
-#ifndef GEODE_IS_IOS
-#include <geode.custom-keybinds/include/Keybinds.hpp>
-using namespace keybinds;
-
-void HookUILayer::defineKeybind(const char* id, std::function<ListenerResult(bool)> callback) {
-	PlayLayer::get()->template addEventListener<InvokeBindFilter>([this, callback](InvokeBindEvent* event) {
-		return callback(event->isDown());
-	}, id);
-}
-#else
-void HookUILayer::defineKeybind(const char* id, std::function<ListenerResult(bool)> callback) {
-}
-#endif

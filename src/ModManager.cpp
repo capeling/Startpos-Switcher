@@ -1,5 +1,7 @@
 #include "ModManager.hpp"
 
+#include "keybind/KeybindSetting.hpp"
+
 using namespace geode::prelude;
 
 ModManager* ModManager::sharedState() {
@@ -8,28 +10,39 @@ ModManager* ModManager::sharedState() {
 }
 
 ModManager::ModManager() {
-    m_dontFadeOnStart = geode::Mod::get()->getSettingValue<bool>("hide");
-    m_hideBtns = geode::Mod::get()->getSettingValue<bool>("hideBtns");
-    m_ignoreDisabled = geode::Mod::get()->getSettingValue<bool>("ignoreDisabled");
-    m_opacity = geode::Mod::get()->getSettingValue<double>("opacity") / 100 * 255;
+    m_dontFadeOnStart = Mod::get()->getSettingValue<bool>("hide");
+    m_hideBtns = Mod::get()->getSettingValue<bool>("hideBtns");
+    m_ignoreDisabled = Mod::get()->getSettingValue<bool>("ignoreDisabled");
+    m_opacity = Mod::get()->getSettingValue<double>("opacity") / 100 * 255;
+
+    m_prevKey = Mod::get()->getSettingValue<Keybind>("leftSwitch");
+    m_nextKey = Mod::get()->getSettingValue<Keybind>("rightSwitch");
 }
 
 $on_mod(Loaded) {
     auto mm = ModManager::sharedState();
     
-    listenForSettingChanges("hide", [mm](bool val) {
+    listenForSettingChanges<bool>("hide", [mm](bool val) {
         mm->m_dontFadeOnStart = val;
     });
     
-    listenForSettingChanges("hideBtns", [mm](bool val) {
+    listenForSettingChanges<bool>("hideBtns", [mm](bool val) {
         mm->m_hideBtns = val;
     });
     
-    listenForSettingChanges("ignoreDisabled", [mm](bool val) {
+    listenForSettingChanges<bool>("ignoreDisabled", [mm](bool val) {
         mm->m_ignoreDisabled = val;
     });
     
-    listenForSettingChanges("opacity", [mm](double val) {
+    listenForSettingChanges<double>("opacity", [mm](double val) {
         mm->m_opacity = val / 100 * 255;
+    });
+ 
+    listenForSettingChanges<Keybind>("leftSwitch", [mm](Keybind val) {
+        mm->m_prevKey = val;
+    });
+
+    listenForSettingChanges<Keybind>("rightSwitch", [mm](Keybind val) {
+        mm->m_nextKey = val;
     });
 }

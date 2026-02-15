@@ -52,29 +52,24 @@ bool HookUILayer::init(GJBaseGameLayer* baseGame) {
             fields->m_nextSwitcherBtn->setVisible(false);
         }
 
+        addEventListener(KeybindSettingPressedEventV3(GEODE_MOD_ID, "leftSwitch"), [this](const Keybind& keybind, bool down, bool repeat) {
+            if (down && !repeat) {
+                auto playLayer = static_cast<HookPlayLayer*>(PlayLayer::get());
+                playLayer->updateStartPos(playLayer->m_fields->m_startPosIdx - 1);
+            }
+        });
+
+        addEventListener(KeybindSettingPressedEventV3(GEODE_MOD_ID, "rightSwitch"), [this](const Keybind& keybind, bool down, bool repeat) {
+            if (down && !repeat) {
+                auto playLayer = static_cast<HookPlayLayer*>(PlayLayer::get());
+                playLayer->updateStartPos(playLayer->m_fields->m_startPosIdx + 1);
+            }
+        });
+
         this->addChild(fields->m_switcherMenu);
     }
 
     return true;
-}
-
-void HookUILayer::handleKeypress(cocos2d::enumKeyCodes key, bool down, double timestamp) {
-    if (!down)
-        return UILayer::handleKeypress(key, down, timestamp);
-    
-    if (m_editorMode)
-        return UILayer::handleKeypress(key, down, timestamp);
-
-    auto mm = ModManager::sharedState();
-    auto playLayer = static_cast<HookPlayLayer*>(PlayLayer::get());
-
-    if (key == mm->m_nextKey.v && !playLayer->m_fields->m_startPosObjects.empty() && playLayer->canPauseGame()) 
-        playLayer->updateStartPos(playLayer->m_fields->m_startPosIdx + 1);
-    
-    if (key == mm->m_prevKey.v && !playLayer->m_fields->m_startPosObjects.empty() && playLayer->canPauseGame()) 
-        playLayer->updateStartPos(playLayer->m_fields->m_startPosIdx - 1);
-
-    UILayer::handleKeypress(key, down, timestamp);
 }
 
 void HookUILayer::updateUI() {

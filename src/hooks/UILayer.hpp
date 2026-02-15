@@ -16,7 +16,5 @@ struct HookUILayer : geode::Modify<HookUILayer, UILayer> {
 	};
 
 	bool init(GJBaseGameLayer* baseGame);
-    void handleKeypress(cocos2d::enumKeyCodes key, bool down, double timestamp);
-
 	void updateUI();
 };

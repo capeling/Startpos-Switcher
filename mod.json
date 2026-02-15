@@ -1,5 +1,5 @@
 {
-	"geode": "5.0.0-alpha.1",
+	"geode": "5.0.0-beta.1",
 	"gd": {
 		"win": "2.2081",
 		"mac": "2.2081",
@@ -13,16 +13,16 @@
 	"description": "Just a startpos switcher",
 	"settings": {
         "leftSwitch": {
-            "type": "custom:keybind",
+            "type": "keybind",
             "name": "Previous Startpos",
             "description": "Switches to the previous startpos, wraps around",
-            "default": 81
+            "default": "Q"
         },
         "rightSwitch": {
-            "type": "custom:keybind",
+            "type": "keybind",
             "name": "Next Startpos",
             "description": "Switches to the next startpos, wraps around",
-            "default": 69
+            "default": "E"
         },
 		"opacity":{
 			"name": "Opacity",

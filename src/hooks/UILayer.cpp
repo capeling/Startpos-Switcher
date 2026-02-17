@@ -52,14 +52,14 @@ bool HookUILayer::init(GJBaseGameLayer* baseGame) {
             fields->m_nextSwitcherBtn->setVisible(false);
         }
 
-        addEventListener(KeybindSettingPressedEventV3(GEODE_MOD_ID, "leftSwitch"), [this](const Keybind& keybind, bool down, bool repeat) {
+        addEventListener(KeybindSettingPressedEventV3(GEODE_MOD_ID, "leftSwitch"), [this](const Keybind& keybind, bool down, bool repeat, double timestamp) {
             if (down && !repeat) {
                 auto playLayer = static_cast<HookPlayLayer*>(PlayLayer::get());
                 playLayer->updateStartPos(playLayer->m_fields->m_startPosIdx - 1);
             }
         });
 
-        addEventListener(KeybindSettingPressedEventV3(GEODE_MOD_ID, "rightSwitch"), [this](const Keybind& keybind, bool down, bool repeat) {
+        addEventListener(KeybindSettingPressedEventV3(GEODE_MOD_ID, "rightSwitch"), [this](const Keybind& keybind, bool down, bool repeat, double timestamp) {
             if (down && !repeat) {
                 auto playLayer = static_cast<HookPlayLayer*>(PlayLayer::get());
                 playLayer->updateStartPos(playLayer->m_fields->m_startPosIdx + 1);

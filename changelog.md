@@ -1,4 +1,6 @@
 # Startpos Switcher Changelog
+## v1.0.10
+- Fix for new keybind update
 ## v1.0.9
 - Support for 2.2081
 - No longer depends on custom keybinds, go into the mod settings to change keybind now.

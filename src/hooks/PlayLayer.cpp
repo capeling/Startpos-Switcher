@@ -16,6 +16,9 @@ void HookPlayLayer::addObject(GameObject* obj) {
 void HookPlayLayer::updateStartPos(int idx) {
     auto fields = m_fields.self();
 
+    if (fields->m_startPosObjects.size() == 0)
+        return;
+
     if(idx < 0) idx = fields->m_startPosObjects.size();
     if(idx > fields->m_startPosObjects.size()) idx = 0;
 

@@ -16,13 +16,15 @@
             "type": "keybind",
             "name": "Previous Startpos",
             "description": "Switches to the previous startpos, wraps around",
-            "default": "Q"
+            "default": "Q",
+            "category": "gameplay"
         },
         "rightSwitch": {
             "type": "keybind",
             "name": "Next Startpos",
             "description": "Switches to the next startpos, wraps around",
-            "default": "E"
+            "default": "E",
+            "category": "gameplay"
         },
 		"opacity":{
 			"name": "Opacity",
